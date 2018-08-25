@@ -5,48 +5,51 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 
-
 public class RegistrationDto {
-	
+
 	@NotNull
-	private String firstName;
+	private String firstname;
+
 	@NotNull
-	private String lastName;
+	private String lastname;
+
 	@NotNull
-	
-	private String userName;
+	private String username;
+
 	@NotNull
 	@Email
 	private String email;
+
 	@NotNull
-	@Size(min=5, message = "Length of password should be of 5 charachter")
+	@Size(min = 5, message = "Length of password should be of 5 charachter")
 	private String password;
+
 	@NotNull
-	@Size(min=5, message = "Length of password should be of 5 charachter")
+	@Size(min = 5, message = "Length of password should be of 5 charachter")
 	private String confirmPassword;
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getEmail() {

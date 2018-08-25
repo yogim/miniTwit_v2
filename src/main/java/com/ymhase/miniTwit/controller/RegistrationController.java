@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ymhase.miniTwit.dto.RegistrationDto;
-import com.ymhase.miniTwit.model.UserModel;
-import com.ymhase.miniTwit.service.SessionService;
+import com.ymhase.miniTwit.model.Users;
 import com.ymhase.miniTwit.service.UserService;
 
 @RestController
@@ -21,21 +20,15 @@ public class RegistrationController {
 	@Autowired
 	UserService userService;
 
-	@Autowired
-	SessionService sessionService;
-	
 	private static final Logger logger = Logger.getLogger(RegistrationController.class);
-
 
 	@RequestMapping(method = RequestMethod.POST, value = "/registration")
 	public Map<String, Object> registerUser(@RequestBody RegistrationDto registrationDto) {
 
 		Map<String, Object> response = new HashMap<String, Object>();
-		UserModel model = userService.registerUser(registrationDto);
-		String sessionKey = sessionService.createSession(model.getUserid());
+		Users model = userService.registerUser(registrationDto);
 		logger.info("Registering user");
 		response.put("user-model", model);
-		response.put("session-key", sessionKey);
 		return response;
 
 	}
