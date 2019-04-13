@@ -1,13 +1,17 @@
 package com.ymhase.miniTwit.model;
 
+import java.util.Collection;
+import java.util.HashSet;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name = "users")
 @Table(name = "users")
 public class Users {
 	@Id
@@ -33,8 +37,16 @@ public class Users {
 	@Column(name = "status")
 	private String status;
 
+	public int getUserid() {
+		return userid;
+	}
+
 	public Users() {
-	};
+		super();
+	}
+
+	@OneToMany(mappedBy = "follower")
+	private Collection<Relationship> followings =  new HashSet<Relationship>();
 
 	public Users(int userid, String firstname, String lastname, String username, String email, String password,
 			String status) {
@@ -48,8 +60,15 @@ public class Users {
 		this.status = status;
 	}
 
-	public int getUserid() {
-		return userid;
+	public Users(int userid) {
+		super();
+		this.userid = userid;
+		this.firstname = "";
+		this.lastname = "";
+		this.username = "";
+		this.email = "";
+		this.password = "";
+		this.status = "";
 	}
 
 	public void setUserid(int userid) {
